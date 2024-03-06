@@ -168,3 +168,10 @@ function goTown() {
     monsterName.innerText = monsters[fighting].name;
     monsterHealthText.innerText = monsterHealth;
   }
+  function attack(){
+
+  }
+  function dodge(){
+
+  }
+ 
