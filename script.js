@@ -27,17 +27,20 @@ const monsters = [
   {
     name: "slime",
     level: 2,
-    health: 15
+    health: 15,
+    backgroundImg: "url('./assets/slime.png')"
   },
   {
     name: "fanged beast",
     level: 8,
-    health: 60
+    health: 60,
+    backgroundImg: "url('./assets/fanged-beast.png')"
   },
   {
     name: "dragon",
     level: 20,
-    health: 300
+    health: 300,
+    backgroundImg: "url('./assets/dragon.png')"
   }
 ]
 const locations = [
@@ -45,19 +48,22 @@ const locations = [
     name: "town square",
     "button text": ["Go to store", "Go to cave", "Fight dragon"],
     "button functions": [goStore, goCave, fightDragon],
-    text: "You are in the town square. You see a sign that says \"Store\"."
+    text: "You are in the town square. You see a sign that says \"Store\".",
+    background: "url('./assets/town-square.png')"
   },
   {
     name: "store",
     "button text": ["Buy 10 health (10 gold)", "Buy weapon (30 gold)", "Go to town square"],
     "button functions": [buyHealth, buyWeapon, goTown],
-    text: "You enter the store."
+    text: "You enter the store.",
+    background: "url('./assets/store.png')"
   },
   {
     name: "cave",
     "button text": ["Fight slime", "Fight fanged beast", "Go to town square"],
     "button functions": [fightSlime, fightBeast, goTown],
-    text: "You enter the cave. You see some monsters."
+    text: "You enter the cave. You see some monsters.",
+    background: "url('./assets/cave.png')"
   },
   {
     name: "fight",
@@ -91,6 +97,10 @@ const locations = [
   text: "You find a secret game. Pick a number above. Ten numbers will be randomly chosen between 0 and 10. If the number you choose matches one of the random numbers, you win!" 
 },
 ];
+function updateBackground(location) {
+  document.body.style.backgroundImage = location.background;
+}
+
 
 // initialize buttons
 button1.onclick = goStore;
@@ -98,6 +108,7 @@ button2.onclick = goCave;
 button3.onclick = fightDragon;
 
 function update(location) {
+  updateBackground(location);
   monsterStats.style.display = "none";
   button1.innerText = location["button text"][0];
   button2.innerText = location["button text"][1];
@@ -165,16 +176,19 @@ function sellWeapon() {
 
 function fightSlime() {
   fighting = 0;
+  document.body.style.backgroundImage = monsters[0].backgroundImg;
   goFight();
 }
 
 function fightBeast() {
   fighting = 1;
+  document.body.style.backgroundImage = monsters[1].backgroundImg;
   goFight();
 }
 
 function fightDragon() {
   fighting = 2;
+  document.body.style.backgroundImage = monsters[2].backgroundImg;
   goFight();
 }
 
